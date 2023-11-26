@@ -1,6 +1,7 @@
 import box
 import yaml
 from langchain.chains import RetrievalQA
+from langchain.chat_models import OpenAI, ChatOpenAI
 from langchain.vectorstores import FAISS
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 
@@ -23,6 +24,12 @@ vectorstore = FAISS.load_local(
 
 # Get the retriever with maximum 2 results
 retriever = vectorstore.as_retriever(search_kwargs={'k': 2})
+
+# Set up the turbo LLM
+turbo_llm = ChatOpenAI(
+    model_name=config.openai.model.name,
+    temperature=config.openai.model.temperature,
+)
 
 # Create the LLM chain
 qa_chain = RetrievalQA.from_chain_type(
