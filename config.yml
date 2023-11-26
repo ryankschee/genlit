@@ -1,0 +1,24 @@
+# Model Configuration
+openai:
+  enabled: False
+  api:
+    key: 'OPENAI_API_KEY'
+
+# LLM Configuration
+model:
+  temperature: 0.5
+  max_new_tokens: 4096
+
+# Vector DB Configuration
+data:
+  path: 'data/'
+  faiss:
+    path: 'db/faiss/'
+  chroma:
+    path: 'db/chroma/'
+  embeddings: 'sentence-transformers/all-mpnet-base-v2'
+  chunk:
+    size: 1000 # 1000
+    overlap: 200 # 200
+
+VECTOR_COUNT: 2
